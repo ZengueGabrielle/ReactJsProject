@@ -1,0 +1,106 @@
+spring:
+  application:
+    name: hephaitos-maintenance
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/hephaitos_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        use_sql_comments: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${GMAIL_USERNAME:tsunada25@gmail.com}
+    password: ${GMAIL_APP_PASSWORD:wqxmtkfcctttcpiq}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+        debug: false
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    date-format: yyyy-MM-dd
+    time-zone: Africa/Douala
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/plain
+
+jwt:
+  secret: ${JWT_SECRET:hephaitos-super-secret-key-must-be-at-least-256-bits-long-for-hs256-algorithm-security}
+  expiration: ${JWT_EXPIRATION:86400000}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION:604800000}
+
+app:
+  google-maps-api-key: ${GOOGLE_MAPS_API_KEY:AIzaSyB_vJxK3Erk4gLf3wu988kaJqH83Jszezk}
+  gemini-api-key: ${GEMINI_API_KEY:AIzaSyB4dkFTsDW1lujL95h_o9S5DUl1u9LrDQE}
+  gemini-api-url: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent
+  gemini-model: gemini-1.5-flash
+  stripe-secret-key: ${STRIPE_SECRET_KEY:sk_test_placeholder}
+  stripe-webhook-secret: ${STRIPE_WEBHOOK_SECRET:whsec_placeholder}
+  stripe-publishable-key: ${STRIPE_PUBLISHABLE_KEY:pk_test_placeholder}
+  paypal-client-id: ${PAYPAL_CLIENT_ID:paypal_client_placeholder}
+  paypal-secret: ${PAYPAL_SECRET:paypal_secret_placeholder}
+  paypal-api-url: ${PAYPAL_API_URL:https://api-m.sandbox.paypal.com}
+  orange-money-api-key: ${ORANGE_MONEY_API_KEY:orange_placeholder}
+  orange-money-api-url: ${ORANGE_MONEY_API_URL:https://api.orange.com/orange-money-webpay/cm/v1}
+  orange-money-merchant-key: ${ORANGE_MONEY_MERCHANT_KEY:merchant_placeholder}
+  mtn-momo-api-key: ${MTN_MOMO_API_KEY:mtn_placeholder}
+  mtn-momo-api-url: ${MTN_MOMO_API_URL:https://sandbox.momodeveloper.mtn.com}
+  mtn-momo-subscription-key: ${MTN_MOMO_SUBSCRIPTION_KEY:mtn_sub_placeholder}
+  mtn-momo-collection-api-user: ${MTN_MOMO_API_USER:mtn_user_placeholder}
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}
+  invoice-storage-path: ${INVOICE_STORAGE_PATH:./invoices}
+  currency: XAF
+  country: CM
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+    try-it-out-enabled: true
+  show-actuator: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized
+
+logging:
+  level:
+    com.hephaitos: DEBUG
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #6C8B9F;
+  --color-secondary: #4A4E69;
+  --color-accent: #1A1A1A;
+
+  /* Additional shades for flexibility while keeping the rule */
+  --color-primary-light: #7A9EB3;
+  --color-secondary-light: #5C5F7A;
+  --color-accent-light: #2A2A2A;
+
+  --color-background: #6C8B9F; /* As per 60% rule for backgrounds */
+  --color-background-alt: #F0F4F8; /* A light off-white for content areas so it's readable */
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background-alt text-accent font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-accent;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-accent text-white px-4 py-2 rounded-md hover:bg-accent-light transition-colors duration-200;
+  }
+  .btn-secondary {
+    @apply bg-secondary text-white px-4 py-2 rounded-md hover:bg-secondary-light transition-colors duration-200;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-md overflow-hidden border border-gray-100;
+  }
+  
+  .sidebar {
+    @apply bg-secondary text-white min-h-screen p-4;
+  }
+}
