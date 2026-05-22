@@ -38,7 +38,6 @@ public class ChatbotService {
 
         try {
             WebClient webClient = WebClient.builder()
-                    .baseUrl(geminiApiUrl + "?key=" + geminiApiKey)
                     .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .build();
 
@@ -82,6 +81,7 @@ public class ChatbotService {
             requestBody.setContents(List.of(userContent));
 
             GeminiResponse response = webClient.post()
+                    .uri(geminiApiUrl + "?key=" + geminiApiKey)
                     .bodyValue(requestBody)
                     .retrieve()
                     .bodyToMono(GeminiResponse.class)
@@ -111,7 +111,7 @@ public class ChatbotService {
     // Structures DTO internes pour Gemini API
     @Data
     public static class GeminiRequest {
-        @com.fasterxml.jackson.annotation.JsonProperty("systemInstruction")
+        @com.fasterxml.jackson.annotation.JsonProperty("system_instruction")
         private GeminiContent systemInstruction;
         private List<GeminiContent> contents;
     }
