@@ -57,7 +57,7 @@ jwt:
 
 app:
   google-maps-api-key: ${GOOGLE_MAPS_API_KEY:AIzaSyB_vJxK3Erk4gLf3wu988kaJqH83Jszezk}
-  gemini-api-key: ${GEMINI_API_KEY:AIzaSyDaQr3Uhikdu0DYoO2utiJRR0kJXrF0y7c}
+  gemini-api-key: ${GEMINI_API_KEY:AIzaSyB4dkFTsDW1lujL95h_o9S5DUl1u9LrDQE}
   gemini-api-url: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent
   gemini-model: gemini-1.5-flash
   stripe-secret-key: ${STRIPE_SECRET_KEY:sk_test_placeholder}
